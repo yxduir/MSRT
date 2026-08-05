@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+venv/
+
+# Inference output / logs
+output/
+logs/
+*.partial_rank*
+
+# Checkpoints and model weights (keep large weights out of VCS)
+checkpoint/
+models/
+*.pt
+*.safetensors
+*.bin
+
+# Local experiment workspace (model weights + datasets, 13G — keep out of VCS)
+MSRT-4B/
+
+# Data (keep repos lean — datasets live outside VCS)
+data/
+# but keep the small example in examples/
+!examples/
+examples/*
+!examples/example_data.jsonl
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
