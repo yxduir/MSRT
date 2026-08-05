@@ -1,0 +1,17 @@
+torch==2.10.0
+torchaudio==2.10.0
+
+transformers==5.13.0
+accelerate
+deepspeed
+peft
+
+openai-whisper
+datasets[audio]
+soundfile
+librosa
+sentencepiece
+
+numpy
+pyyaml
+tqdm
