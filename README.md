@@ -1,11 +1,11 @@
 <p align="center">
-  <h1 align="center">MSRT / MoE</h1>
+  <h1 align="center">MSRT</h1>
   <p align="center">
-    多语种语音大模型推理仓库 — 45 语种 <b>ASR</b>（语音识别）与 <b>S2TT</b>（语音翻译）
+    该论文提出一种资源感知的混合语音编码器（Resource-Aware Mixture of Speech Encoders），用于打破多语言语音到文本多对多翻译中的“多语种诅咒”，覆盖45种语言、共 1980 个翻译方向（45×44）。
   </p>
 </p>
 
-> 本仓库用 **Accelerate** 统一算力（NPU / GPU），实现了框架与算力无关；模型在 **Ascend 910C** 上训练，权重同样支持在 GPU 上训练与推理。
+> 本仓库基于 Hugging Face **Accelerate** 构建统一的推理框架，兼容 NPU 与 GPU 两种后端，框架实现与具体算力解耦；模型权重基于 **Ascend 910C** 训练，亦可直接迁移至 NVIDIA GPU 进行推理与训练。
 
 ---
 
@@ -50,6 +50,8 @@ bash infer_moe_gpu.sh
 
 脚本用 `accelerate launch --config_file ./acceleate_config.yaml` 启动bf推理
 
+> **显存要求**：推理所需**最小显存为 16 GB**（GPU）。
+
 ---
 
 ## 数据格式
@@ -83,3 +85,19 @@ bash infer_moe_gpu.sh
 ```
 
 - `asr_r` / `s2tt_r` 由原始 `response` 按分隔符 `<|src|><|tgt|>` 拆分得到。
+
+---
+
+## 引用 / Citation
+
+```bibtex
+@misc{du2026breakingcurseofmultilingualityinmanytomany,
+      title={Breaking the Curse ofMultilinguality inMany-to-Many Speech-to-Text Translation via a Resource-AwareMixture of Speech Encoders}, 
+      author={Yexing Du and Kaiyuan Liu and Youcheng Pan and Bo Yang and Chengpeng Fu and Yu Wang and Ming Liu},
+      year={2026},
+      eprint={2608.04586},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2608.04586}, 
+}
+```

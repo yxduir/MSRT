@@ -15,7 +15,7 @@ set -e
 export MSRT_BACKEND=npu
 export ALLOW_INTERNAL_FORMAT=1
 export TORCH_NPU_FUSION_OP=1
-export ASCEND_RT_VISIBLE_DEVICES=0,1
+export ASCEND_RT_VISIBLE_DEVICES=0
 
 export NCCL_TIMEOUT=7200
 export HCCL_CONNECT_TIMEOUT=7200
@@ -30,7 +30,7 @@ DATA_PATH="./MSRT-4B/data/srt_test_1.jsonl"   # JSONL, one sample per line
 ENCODER_HIGH_PATH="./MSRT-4B/whisper-large-v3-encoder"       # High-resource Whisper encoder
 ENCODER_MID_LOW_PATH="./MSRT-4B/whisper_moe_expert" # Merged mid/low-resource encoder
 TOKENIZER_PATH="./MSRT-4B/MSRT-4B-LLM"             # LLM tokenizer directory
-LLM_PATH="./MSRT-4B/MSRT-4B-LLM"                   # LLM backbone (MiLMMT-46-4B-text-add)
+LLM_PATH="./MSRT-4B/MSRT-4B-LLM"                   
 LLM_DIM=2560
 QUERY_LEN=80
 
@@ -40,11 +40,11 @@ CHECKPOINT="./MSRT-4B/msrt_4b.pt"
 # ---------------------------------------------------------------------------
 # Inference options
 # ---------------------------------------------------------------------------
-MODE="srt"                        # srt (ASR+S2TT) or asr (ASR only)
+MODE="srt"                        # srt (ASR+S2TT)
 MAX_NEW_TOKENS=400
 BATCH_SIZE=256                    # per-device batch size
 NUM_BEAMS=1
-SOURCE="45*45"                        # data filter, format "src*tgt" e.g. "06*45"
+SOURCE="45*45"                        # data filter, format "src*tgt" e.g. "01*45"
 DATE=$(date +%Y%m%d)               # e.g. 20260720
 OUTPUT_PATH="./output/${DATE}/${SOURCE}_beam${NUM_BEAMS}_4b_moe.jsonl"
 mkdir -p "$(dirname "${OUTPUT_PATH}")"  # ensure output directory exists
